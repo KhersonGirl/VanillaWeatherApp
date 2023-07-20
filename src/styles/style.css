@@ -24,7 +24,10 @@ li {
     line-height: 18px;
     color: #a2b0be;
     font-family: 'Roboto', sans-serif;
+}
+li::first-letter {
     text-transform: capitalize;
+
 }
 a {
     text-decoration: none;
@@ -37,6 +40,11 @@ small {
     margin-top: 40px;
     border: solid 1px #dadde1;
     border-radius: 10px;
+}
+.currentDate {
+    line-height: 18px;
+    color: #a2b0be;
+    font-family: 'Roboto', sans-serif;  
 }
 .day-description {
     padding: 0;
