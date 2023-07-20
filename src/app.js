@@ -31,7 +31,9 @@ function displayTemperature(response) {
     let presurreElement = document.querySelector("#pressure");
     let temperatureElement = document.querySelector("#temperature");
     let weatherDescription = document.querySelector("#weatherDescription");
-    let currentDateElement = document.querySelector("#currentDate")
+    let currentDateElement = document.querySelector("#currentDate");
+    let iconElement = document.querySelector("#icon");
+
     temperatureElement = Math.round(response.data.temp);
     weatherDescription.innerHTML = response.data.weather[0].description;
     cityElement.innerHTML = response.data.name;
@@ -39,9 +41,12 @@ function displayTemperature(response) {
     presurreElement.innerHTML = response.data.main.pressure;
     windSpeedElement.innerHTML = Math.round(response.data.wind.speed);
     currentDateElement.innerHTML = formatDate(response.data.dt * 1000);
+    iconElement.setAttribute("src", `http:/openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    iconElement.setAttribute("alt", response.data.weather[0].description);
     
 }
 let apiKey = "f2828a54751ffee5cb551f9ace005148";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${apiKey}&units=metric`;
+let city = "Nuernberg";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
