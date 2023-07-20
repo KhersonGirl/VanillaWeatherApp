@@ -24,9 +24,13 @@ li {
     line-height: 18px;
     color: #a2b0be;
     font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
 }
 a {
     text-decoration: none;
+}
+small {
+    font-family: monospace;
 }
 .container {
     max-width: 580px;
