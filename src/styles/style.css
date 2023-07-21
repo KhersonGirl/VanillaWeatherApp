@@ -22,7 +22,7 @@ li {
     margin: 0;
     padding: 0;
     line-height: 18px;
-    color: #a2b0be;
+    color: #6f7c88;
     font-family: 'Roboto', sans-serif;
 }
 li::first-letter {
@@ -32,6 +32,7 @@ li::first-letter {
 
 a {
     text-decoration: none;
+    color: #007bff;
 }
 small {
     font-family: monospace;
@@ -41,6 +42,7 @@ small {
     margin-top: 40px;
     border: solid 1px #dadde1;
     border-radius: 10px;
+    background: radial-gradient(592px at 48.2% 50%, rgba(255, 255, 249, 0.6) 0%, rgb(160, 199, 254) 74.6%);
 }
 
 .search-form {
@@ -48,7 +50,7 @@ small {
 }
 .currentDate {
     line-height: 18px;
-    color: #a2b0be;
+    color: #6f7c88;
     font-family: 'Roboto', sans-serif;  
 }
 .day-description {
