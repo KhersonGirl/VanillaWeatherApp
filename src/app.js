@@ -24,16 +24,18 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
+    let temperatureElement = document.querySelector("#weather-temperature");
     let cityElement = document.querySelector("#city");
     let humidityElement = document.querySelector("#humidity");
     let windSpeedElement = document.querySelector("#windSpeed");
     let presurreElement = document.querySelector("#pressure");
-    let temperatureElement = document.querySelector("#temperature");
     let weatherDescription = document.querySelector("#weatherDescription");
     let currentDateElement = document.querySelector("#currentDate");
     let iconElement = document.querySelector("#icon");
+    
+    celsiusTemperature = response.data.main.temp;
 
-    temperatureElement = Math.round(response.data.temp);
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
     weatherDescription.innerHTML = response.data.weather[0].description;
     cityElement.innerHTML = response.data.name;
     humidityElement.innerHTML = response.data.main.humidity;
@@ -44,6 +46,7 @@ function displayTemperature(response) {
     iconElement.setAttribute("alt", response.data.weather[0].description);
     
 }
+
 function search(city){
 let apiKey = "f2828a54751ffee5cb551f9ace005148";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -55,7 +58,37 @@ function handleSubmit(event) {
     let cityInputElement = document.querySelector("#city-input");
     search(cityInputElement.value);
 }
-search("New York");
+
+function displayFahrenheitTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#weather-temperature");
+    celsiusLink.classList.remove("activ");
+    fahrenheitLink.classList.add("activ");
+    let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function dispalyCelsiusTemperature(event) {
+    event.preventDefault();
+    celsiusLink.classList.add("activ");
+    fahrenheitLink.classList.remove("activ");
+    let temperatureElement = document.querySelector("#weather-temperature");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+
+}
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheitLink");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsiusLink");
+celsiusLink.addEventListener("click", dispalyCelsiusTemperature);
+
+
+
+search("New York");

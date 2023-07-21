@@ -7,7 +7,7 @@ h1 {
     margin-top: 5px;
 }
 h2 {
-    font-size: 46px;
+    font-size: 50px;
     display: inline;
     padding: 0;
     margin-right: 5px;
@@ -70,7 +70,11 @@ small {
     position: relative;
     font-size: 18px;
     top: -22px;
-    left: -16px;
+    left: -10px;
+}
+.weather-temperature .units .activ {
+    color: rgb(0, 0, 0);
+    cursor: default;
 }
 
 .weather-description {
