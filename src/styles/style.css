@@ -38,7 +38,7 @@ small {
     font-family: monospace;
 }
 .container {
-    max-width: 580px;
+    max-width: 600px;
     margin-top: 40px;
     border: solid 1px #dadde1;
     border-radius: 10px;
@@ -80,13 +80,15 @@ small {
 }
 
 .weather-description {
+  width: 200px;
   padding: 0;
   position: relative;
-  top: 160px;
+  top: 110px;
   font-size: 14px;
+  left: -130px;
 }
 
 .footer {
-    max-width: 580px;
+    max-width: 600px;
     margin: 10px auto;
 }
