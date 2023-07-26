@@ -110,33 +110,13 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#weather-temperature");
-  celsiusLink.classList.remove("activ");
-  fahrenheitLink.classList.add("activ");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
 
-function dispalyCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("activ");
-  fahrenheitLink.classList.remove("activ");
-  let temperatureElement = document.querySelector("#weather-temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
 
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-let fahrenheitLink = document.querySelector("#fahrenheitLink");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsiusLink");
-celsiusLink.addEventListener("click", dispalyCelsiusTemperature);
 
 search("Lauf");
 
