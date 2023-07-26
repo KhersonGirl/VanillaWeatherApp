@@ -132,4 +132,4 @@ form.addEventListener("submit", handleSubmit);
 let currentWeatherLink = document.querySelector("#current-weather-link");
 currentWeatherLink.addEventListener("click", clickCurrentWeatherLink);
 
-search("Kholmsk");
+search("Lauf");
