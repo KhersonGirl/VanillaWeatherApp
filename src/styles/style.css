@@ -102,6 +102,7 @@ small {
 }
 .weather-forecast span {
     color: #007bff;
+    text-align: center;
 }
 .forecast-temp-min {    
     opacity: 0.6;
