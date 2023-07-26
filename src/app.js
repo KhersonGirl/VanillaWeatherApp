@@ -11,20 +11,19 @@ function formatDate(timestamp) {
     "Friday",
     "Saturday",
   ];
-  
+
   if (hours < 10) {
-      hours = `0${hours}`;
-    }
-    if (minutes < 10) {
-        minutes = `0${minutes}`;
-    }
-    
+    hours = `0${hours}`;
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
   let day = days[date.getDay()];
   return `${day}   ${hours}:${minutes}`;
 }
 
 function formatDay(timestamp) {
-
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -33,40 +32,43 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-    let forecast = response.data.daily;
+  let forecast = response.data.daily;
 
-    let forecastElement = document.querySelector("#forecast");
-    let forecastHTML = `<div class="row">`;
-    console.log(forecast);
-    forecast.forEach(function(forecastDay, index) {
-      if (index < 6) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
 
-      
-  forecastHTML =
-    forecastHTML +
-    `<div class="col-2">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
               <div class="forecast-date">
               ${formatDay(forecastDay.dt)}
                 </div>
-                <img class="weather-forecast-img" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="">
+                <img class="weather-forecast-img" src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png" alt="">
                 <div class="forecast-temperatures">
-                <span class="forecast-temp-max" id="temp-max">${Math.round(forecastDay.temp.max)}°</span>
-                <span class="forecast-temp-min" id="temp-min">${Math.round(forecastDay.temp.min)}°</span>
+                <span class="forecast-temp-max" id="temp-max">${Math.round(
+                  forecastDay.temp.max
+                )}°</span>
+                <span class="forecast-temp-min" id="temp-min">${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
                 </div>
               </div>
             
     `;
-  }
-});
-forecastHTML = forecastHTML + `</div>`;
-forecastElement.innerHTML = forecastHTML;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
-
-function getForecast(coordinates){
-    let apiKey = "535cacbb3f8a0df0aeb4790235b9541f";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-     axios.get(apiUrl).then(displayForecast);
+function getForecast(coordinates) {
+  let apiKey = "535cacbb3f8a0df0aeb4790235b9541f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -97,7 +99,6 @@ function displayTemperature(response) {
   getForecast(response.data.coord);
 }
 
-
 function search(city) {
   let apiKey = "f2828a54751ffee5cb551f9ace005148";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -109,14 +110,26 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
+function displayCurrentWeather(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
 
+  let apiKey = "095a180202c887518368a10c7c7a0517";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function clickCurrentWeatherLink() {
+  navigator.geolocation.getCurrentPosition(displayCurrentWeather);
+}
 
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+let currentWeatherLink = document.querySelector("#current-weather-link");
+currentWeatherLink.addEventListener("click", clickCurrentWeatherLink);
 
-search("Lauf");
-
+search("Kholmsk");
